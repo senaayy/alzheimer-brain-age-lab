@@ -25,7 +25,7 @@ docker-compose up --build
 Erişim: Terminalde çıkan http://127.0.0.1:8888 linkine tıklayarak Jupyter Lab'e giriş yapın.
 ```
 📂 Dosya Yapısı
-```text
+```
 Plaintext
 .
 ├── data/               # MRI Veri Seti (Mild, Moderate, Non, Very_Mild)
