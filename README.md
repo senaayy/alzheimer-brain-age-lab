@@ -26,7 +26,6 @@ Erişim: Terminalde çıkan http://127.0.0.1:8888 linkine tıklayarak Jupyter La
 ```
 📂 Dosya Yapısı
 ```
-Plaintext
 .
 ├── data/               # MRI Veri Seti (Mild, Moderate, Non, Very_Mild)
 ├── notebooks/          # .ipynb Kod dosyaları
