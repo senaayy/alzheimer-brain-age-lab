@@ -15,7 +15,7 @@ Proje tamamen Docker üzerinde koşturulacak şekilde tasarlanmıştır.
 
 Depoyu Klonlayın:
 
-Bash
+```bash
 git clone https://github.com/kullanici-adin/alzheimer-brain-lab.git
 cd alzheimer-brain-lab
 Docker ile Başlatın:
@@ -23,8 +23,10 @@ Docker ile Başlatın:
 Bash
 docker-compose up --build
 Erişim: Terminalde çıkan http://127.0.0.1:8888 linkine tıklayarak Jupyter Lab'e giriş yapın.
-
-📂 Proje Yapısı
+```
+```
+📂 Dosya Yapısı
+```text
 Plaintext
 .
 ├── data/               # MRI Veri Seti (Mild, Moderate, Non, Very_Mild)
@@ -32,6 +34,7 @@ Plaintext
 ├── Dockerfile          # Python ve sistem bağımlılıkları
 ├── docker-compose.yml  # Konteyner ve Volume konfigürasyonu
 └── requirements.txt    # Keras, TensorFlow, OpenCV vb.
+```
 🧠 Model Mimarisi
 Model, nörogörüntüleme verilerinden özellik çıkarmak üzere optimize edilmiş bir CNN (Convolutional Neural Network) yapısıdır:
 
