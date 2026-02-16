@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  brain-lab:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      # 1. Kodlarını tutacağın klasör (Notebooks)
+      - ./notebooks:/app/notebooks
+      # 2. İndirdiğin verilerin olduğu klasör (Burayı aynen böyle bırak)
+      - ./data:/app/data
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    # CPU kullanımı için bellek limiti koymuyoruz, bilgisayarın gücünü kullansın.
