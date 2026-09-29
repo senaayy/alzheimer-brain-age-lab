@@ -2,7 +2,7 @@
 Bu proje, derin öğrenme (CNN) kullanarak MR görüntülerinden Alzheimer evrelerini teşhis eden ve kararlarını Grad-CAM (Explainable AI) ile görselleştiren bir laboratuvar ortamıdır. Model, sadece tahmin yapmakla kalmaz; teşhis koyarken beynin hangi bölgelerine odaklandığını "ısı haritası" ile kanıtlar.
 
 🚀 Öne Çıkan Özellikler
-Yüksek Doğruluk: 4 farklı Alzheimer evresinde (Non, Very Mild, Mild, Moderate) %96+ doğrulama başarısı.
+Yüksek Doğruluk: 4 farklı Alzheimer evresinde (Non, Very Mild, Mild, Moderate) %97.3 doğrulama başarısı (10 epoch, gerçek Docker çalıştırmasıyla doğrulandı — bkz. Sonuçlar ve Sınırlılıklar).
 
 Açıklanabilir Yapay Zeka (XAI): Klinik güven ve şeffaflık için Grad-CAM entegrasyonu.
 
@@ -38,7 +38,7 @@ Model, nörogörüntüleme verilerinden özellik çıkarmak üzere optimize edil
 
 Feature Extraction: 3 katmanlı Conv2D + MaxPooling blokları.
 
-Karar Mekanizması: Flatten ve Dropout ile desteklenmiş Dense katmanları.
+Karar Mekanizması: Flatten ve Dense katmanları (şu anki mimaride dropout/regularization katmanı yok — bkz. Sınırlılıklar).
 
 Optimizasyon: Adam Optimizer ve Sparse Categorical Crossentropy.
 
@@ -47,12 +47,20 @@ Yapay zekanın "kara kutu" (black box) problemini çözmek için projeye Grad-CA
 
 Klinik Not: Isı haritasında kırmızı görünen bölgeler, modelin teşhis koyarken en çok güvendiği piksellerdir. Bu, doktorların modelin kararına güven duymasını sağlar.
 
-📈 Sonuçlar
-Validation Accuracy: ~%96.6
+📚 Veri Kaynağı
+[Alzheimer's Dataset (4 class of Images) — Kaggle](https://www.kaggle.com/datasets/tourist55/alzheimers-dataset-4-class-of-images). 6400 MR görüntüsü, 4 sınıf (Non: 3200, Very Mild: 2240, Mild: 896, Moderate: 64). Bozuk/açılamayan 1 dosya (`Non/28 (60).jpg`) veri setinden çıkarıldı, eğitim gerçek 6399 görüntüyle yapıldı (5120 eğitim / 1279 doğrulama).
 
-Loss: ~0.10
+📈 Sonuçlar (10 epoch, gerçek Docker çalıştırmasıyla doğrulandı)
+Eğitim Doğruluğu: %99.9 (kayıp: 0.006)
 
-XAI Kanıtı: Modelin teşhis koyarken beynin temporal lob ve ventrikül bölgelerindeki doku değişimlerine odaklandığı doğrulanmıştır.
+Doğrulama Doğruluğu: %97.3 (kayıp: 0.102)
+
+XAI Kanıtı: Grad-CAM hücresi hatasız çalıştı, ısı haritası son hücrede görülebiliyor. Modelin beynin temporal lob/ventrikül bölgelerine odaklandığı gözlemi niteliksel bir gözlemdir (görsel inceleme), nicel/istatistiksel olarak ölçülmemiştir.
+
+⚠️ Sınırlılıklar
+- Eğitim doğruluğu (%99.9) doğrulama doğruluğundan (%97.3) belirgin şekilde yüksek ve mimaride dropout/regularization yok — model bir miktar ezberleme (overfitting) yapıyor olabilir.
+- `Moderate` sınıfı yalnızca 64 örnek içeriyor; bu sınıftaki performans (ve genel model performansına katkısı) küçük örneklem nedeniyle temkinli yorumlanmalı.
+- Sonuç tek bir train/val bölünmesine (seed=123) dayanıyor; çapraz doğrulama yapılmadı.
 
 🎓 Akademik Referans
 Bu çalışma, derin öğrenmenin nörodejeneratif hastalıkların erken teşhisindeki potansiyelini ve açıklanabilir modellerin klinik karar destek sistemlerindeki önemini vurgulamak amacıyla geliştirilmiştir.
