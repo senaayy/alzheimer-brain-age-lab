@@ -16,8 +16,8 @@ Proje tamamen Docker üzerinde koşturulacak şekilde tasarlanmıştır.
 Depoyu Klonlayın:
 
 ```bash
-git clone https://github.com/kullanici-adin/alzheimer-brain-lab.git
-cd alzheimer-brain-lab
+git clone https://github.com/senaayy/alzheimer-brain-age-lab.git
+cd alzheimer-brain-age-lab
 Docker ile Başlatın:
 
 Bash
